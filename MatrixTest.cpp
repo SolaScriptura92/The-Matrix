@@ -15,6 +15,5 @@ int main()
     
     x.printMatrix();
     
-    cout << "chales!";
     return 0;
 }
