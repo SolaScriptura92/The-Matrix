@@ -15,5 +15,8 @@ int main()
     
     x.printMatrix();
     
+    cout << "columns: " << x.getNumColumns() << endl;
+    cout << "rows: " << x.getNumRows() << endl;
+    
     return 0;
 }
