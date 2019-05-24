@@ -29,3 +29,17 @@ void Matrix::printMatrix()
         cout << endl;
     }
 }
+
+int Matrix::getNumRows()
+{
+    return matrix.size();
+}
+
+int Matrix::getNumColumns()
+{
+    return matrix[0].size();
+}
+
+/*Matrix Matrix::operator+(<#const Matrix &a#>) const this function will use the '+' to add two matrices
+{
+} */
