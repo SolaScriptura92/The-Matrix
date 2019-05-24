@@ -22,10 +22,11 @@ private:
 public:
     Matrix(int rows = 0, int columns = 0);
     void printMatrix();
-    //Matrix operator+(const Matrix &a) const; //to be implemented
+    Matrix operator+(Matrix &a);
     int getNumRows();
     int getNumColumns();
-    
+    int getValue(int row, int column);
+    void setValue(int row, int column, int value);
 };
 
 
