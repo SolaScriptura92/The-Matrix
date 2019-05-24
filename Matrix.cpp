@@ -1,5 +1,7 @@
 //
 //  Matrix.cpp
+//
+//  Matrix.cpp
 //  MatrixApp
 //
 //  Created by Jose on 5/22/19.
@@ -40,6 +42,27 @@ int Matrix::getNumColumns()
     return matrix[0].size();
 }
 
-/*Matrix Matrix::operator+(<#const Matrix &a#>) const this function will use the '+' to add two matrices
+int Matrix::getValue(int row, int column)
 {
-} */
+    return matrix[row][column];
+}
+
+void Matrix::setValue(int row, int column, int value)
+{
+    matrix[row][column] = value;
+}
+
+Matrix Matrix::operator+(Matrix &a) //this function will add two matrices
+{
+    Matrix sumMatrix(a.getNumRows(), a.getNumColumns());
+    
+    for(int i = 0; i < a.getNumRows(); i++)
+    {
+        for(int j = 0; j < a.getNumColumns(); j++)
+        {
+            sumMatrix.matrix[i][j] = this->getValue(i, j) + a.getValue(i, j);
+        }
+    }
+    
+    return sumMatrix;
+}
