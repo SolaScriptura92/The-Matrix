@@ -1,12 +1,10 @@
-//
-//  Matrix.cpp
-//
-//  Matrix.cpp
-//  MatrixApp
-//
-//  Created by Jose on 5/22/19.
-//  Copyright © 2019 Jose'sProjects. All rights reserved.
-//
+/*
+    Matrix.cpp
+    MatrixApp
+
+    This is the defined body of the Matrix class. It works in conjunction with the Matrix.h file to fully define the class.
+    It contains the function definitions.
+*/
 
 #include <stdio.h>
 #include "Matrix.h"
@@ -52,7 +50,7 @@ void Matrix::setValue(int row, int column, int value)
     matrix[row][column] = value;
 }
 
-Matrix Matrix::operator+(Matrix &a) //this function will add two matrices
+Matrix Matrix::operator+(Matrix &a) //this function (overloaded '+' operator) adds two matrices together
 {
     Matrix sumMatrix(a.getNumRows(), a.getNumColumns());
     
@@ -65,4 +63,20 @@ Matrix Matrix::operator+(Matrix &a) //this function will add two matrices
     }
     
     return sumMatrix;
+}
+
+Matrix Matrix::operator-(Matrix &a) //this function substracts to the right of it from the matrix to the left of it.
+{
+
+    Matrix differenceMatrix(a.getNumRows(), a.getNumColumns());
+    
+    for(int i = 0; i < a.getNumRows(); i++)
+    {
+        for(int j = 0; j < a.getNumColumns(); j++)
+        {
+            differenceMatrix.matrix[i][j] = this->getValue(i, j) - a.getValue(i, j);
+        }
+    }
+                            
+    return differenceMatrix;
 }
