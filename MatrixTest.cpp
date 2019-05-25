@@ -71,6 +71,35 @@ int main()
     
     z.printMatrix();
     
+/*
+    The code creates a new Matrix object, 'w', with 2 rows and 4 columns. It then stores the values 7, 9, -2, and 2 inside of it.
+    Then it creates another Matrix object, 'diffWandZ', that stores the difference between matrices w and z.
+    It then prints out the computation and it's result, as the code above.
+ */
+    
+    Matrix w(2, 4);
+    
+    w.setValue(1, 0, 7);
+    w.setValue(0, 3, 9);
+    w.setValue(0, 1, -2);
+    w.setValue(0, 2, 2);
+    
+    Matrix diffWandZ = w - z;
+    
+    cout << endl << endl << "Matrix w: " << endl << endl;
+    
+    w.printMatrix();
+    
+    cout << endl << endl << "   -" << endl << endl;
+    
+    cout << "Matrix z: " << endl << endl;
+    
+    z.printMatrix();
+    
+    cout << endl << endl << "   =" << endl << endl;
+    
+    diffWandZ.printMatrix();
+    
     return 0;
 }
 
