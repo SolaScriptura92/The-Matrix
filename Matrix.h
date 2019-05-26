@@ -1,10 +1,10 @@
 /*
-  Matrix.h
-  MatrixApp
+ Matrix.h
+ MatrixApp
  
-  This file contains what could be called the skeleton of the Matrix.cpp file. It defines the class by declaring the access type of
-  its data and functions.
-*/
+ This file contains what could be called the skeleton of the Matrix.cpp file. It defines the class by declaring the access type of
+ its data and functions.
+ */
 
 #ifndef Matrix_h
 #define Matrix_h
@@ -28,7 +28,7 @@ public:
     int getNumColumns();
     int getValue(int row, int column);
     void setValue(int row, int column, int value);
+    Matrix transpose();
 };
-
 
 #endif /* Matrix_h */
