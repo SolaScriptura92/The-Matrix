@@ -151,6 +151,73 @@ int main()
     sTimesT.printMatrix();
     cout << endl;
     
+/*
+    The code tests the isRowEchelonForm() function on a matrix.
+ */
+    
+    Matrix echelon(4, 4);
+    
+    echelon.setValue(0, 0, 1);
+    echelon.setValue(0, 1, 2);
+    echelon.setValue(0, 2, 3);
+    echelon.setValue(0, 3, 4);
+    echelon.setValue(1, 2, 1);
+    echelon.setValue(1, 3, 3);
+    echelon.setValue(2, 3, 1);
+    
+    echelon.printMatrix();
+    
+    if(echelon.isRowEchelonForm())
+        cout << "\nEchelon is in echelon form!\n\n";
+    
+    else
+        cout << "\nEchelon is not in echelon form!\n\n";
+  
+/*
+    The code changes the value in the (0,0) place in the matrix so that the first row no longer has a non zero
+    leading number that is not equal to 1, hence, it is not in row echelon form.
+ */
+    echelon.setValue(0, 0, 2);
+    echelon.printMatrix();
+    
+    if(echelon.isRowEchelonForm())
+        cout << "\nEchelon is in echelon form!\n\n";
+    
+    else
+        cout << "\nEchelon is not in echelon form!\n\n";
+    
+/*
+    The code changes the value in the matrix back to row echelon form, but than changes it to non echelon form again by
+    making the leading non zero term (although a 1), not in a column to the right of the column of where the leading
+    non zero term is found in the previous term.
+*/
+    echelon.setValue(0, 0, 1);
+    echelon.setValue(1, 0, 1);
+    echelon.printMatrix();
+    
+    if(echelon.isRowEchelonForm())
+        cout << "\nEchelon is in echelon form!\n\n";
+    
+    else
+        cout << "\nEchelon is not in echelon form!\n\n";
+    
+    
+/*
+    The code changes the value in the matrix back to row echelon form, but than changes it to non echelon form again by
+    making the second row equal to all zeros, and having another non all zero row appear after it, hence making it not be in
+    row echelon form.
+*/
+    echelon.setValue(1, 0, 0);
+    echelon.setValue(1, 2, 0);
+    echelon.setValue(1, 3, 0);
+    echelon.printMatrix();
+    
+    if(echelon.isRowEchelonForm())
+        cout << "\nEchelon is in echelon form!\n\n";
+    
+    else
+        cout << "\nEchelon is not in echelon form!\n\n";
+    
     return 0;
 }
 
