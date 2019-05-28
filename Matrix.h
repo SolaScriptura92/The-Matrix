@@ -24,6 +24,7 @@ public:
     void printMatrix();  //Needs to have changes made so that output it neatly formatted.
     Matrix operator+(Matrix &a);
     Matrix operator-(Matrix &a);
+    Matrix operator*(Matrix &a);
     int getNumRows();
     int getNumColumns();
     int getValue(int row, int column);
