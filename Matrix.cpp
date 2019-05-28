@@ -80,6 +80,40 @@ Matrix Matrix::operator-(Matrix &a) //this function substracts to the right of i
     return differenceMatrix;
 }
 
+Matrix Matrix::operator*(Matrix &a)
+{
+    Matrix emptyMatrix;
+    
+    if(this->getNumColumns() == a.getNumRows())
+    {
+        Matrix productMatrix(this->getNumRows(), a.getNumColumns());
+        
+        int sum = 0;
+
+        for(int k = 0; k < this->getNumRows(); k++) //changes rows to next row...
+        {
+            for(int l = 0; l < a.getNumColumns(); l++) //changes to next column.
+            {
+                for(int m = 0; m < a.getNumRows(); m++)
+                {
+                    sum += this->getValue(k, m) * a.getValue(m, l);
+                }
+                        
+                productMatrix.matrix[k][l] = sum;
+                sum = 0;
+            }
+        }
+        
+        return productMatrix;
+    }
+    
+    else
+    {
+        Matrix emptyMatrix;
+        return emptyMatrix;
+    }
+}
+
 Matrix Matrix::transpose()
 {
     
@@ -95,4 +129,3 @@ Matrix Matrix::transpose()
     
     return transposedMatrix;
 }
-
