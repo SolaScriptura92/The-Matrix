@@ -25,11 +25,12 @@ public:
     Matrix operator+(Matrix &a);
     Matrix operator-(Matrix &a);
     Matrix operator*(Matrix &a);
+    Matrix transpose();
     int getNumRows();
     int getNumColumns();
     int getValue(int row, int column);
     void setValue(int row, int column, int value);
-    Matrix transpose();
+    bool isRowEchelonForm();
 };
 
 #endif /* Matrix_h */
