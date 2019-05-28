@@ -129,3 +129,67 @@ Matrix Matrix::transpose()
     
     return transposedMatrix;
 }
+
+bool Matrix::isRowEchelonForm()
+{
+    vector<int> leadingEntryColumnNumbers;
+    bool containsAllZeros = true;
+    vector<int> rowsWithAllZeros;
+    vector<int> rowsWithSomeNonZero;
+    
+    for(int i = 0; i < this->getNumRows(); i++) //changes row
+    {
+        for(int j = 0; j < this->getNumColumns(); j++) //changes column
+        {
+            if(this->matrix[i][j] != 0) //spotted first nonzero
+            {
+                
+                if(this->matrix[i][j] != 1) //leading entry is not one
+                {
+                    return false;
+                }
+                
+                else
+                {
+                    containsAllZeros = false;
+                    leadingEntryColumnNumbers.push_back(j);
+                    break;
+                }
+            }
+        }
+        
+        if(containsAllZeros)
+        {
+            rowsWithAllZeros.push_back(i);
+        }
+        
+        else
+        {
+            rowsWithSomeNonZero.push_back(i);
+            containsAllZeros = true;
+        }
+    }
+    
+    //at this point, the first condition will have been checked for already, and the info is there to check the other two.
+    
+    for(int k = 0; k < leadingEntryColumnNumbers.size() - 1; k++) //checks second condition (i.e., each leading entry is in a
+    {                                                             //to the right of the previous row.
+        if(leadingEntryColumnNumbers[k + 1] <= leadingEntryColumnNumbers[k])
+        {
+            return false;
+        }
+    }
+    
+    if(!rowsWithAllZeros.empty()) //checks to make sure rows with all zero elements are below rows that have a non zero element.
+    {
+        for(int m = 0; m < rowsWithAllZeros.size(); m++)
+        {
+            if(rowsWithAllZeros[m] < rowsWithSomeNonZero[rowsWithSomeNonZero.size() - 1])
+            {
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
