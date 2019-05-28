@@ -114,6 +114,43 @@ int main()
     z.printMatrix();
     cout << endl << endl;
     
+/*
+    The code creates two new matrices, multiplies them together, and then prints their products.
+    After entering the values into the matrices and performing the calculations. The equation is as follows:
+ 
+    s = [ 0  4 -2           t = [ 0  1
+         -4 -3  0 ]               1 -1
+                                  2  3 ]
+ 
+    s + t = sTimesT = [  0 -10
+                        -3  -1 ]
+ */
+    
+    
+    Matrix s(2, 3);
+    Matrix t(3, 2);
+    
+    s.setValue(0, 1, 4);
+    s.setValue(0, 2, -2);
+    s.setValue(1, 0, -4);
+    s.setValue(1, 1, -3);
+    s.setValue(1, 2, 0);
+    
+    t.setValue(0, 1, 1);
+    t.setValue(1, 0, 1);
+    t.setValue(1, 1, -1);
+    t.setValue(2, 0, 2);
+    t.setValue(2, 1, 3);
+    
+    Matrix sTimesT;
+    
+    sTimesT = s * t;
+    
+    cout << "\n\ns * t = " << endl << endl;
+    
+    sTimesT.printMatrix();
+    cout << endl;
+    
     return 0;
 }
 
