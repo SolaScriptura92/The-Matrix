@@ -218,6 +218,28 @@ int main()
     else
         cout << "\nEchelon is not in echelon form!\n\n";
     
+/*
+    The code now creates a new matrix 'q', which is in reduced row echelon form. The program then checks to make sure the
+    the isReducedRowEchelonForm() method works correctly.
+ */
+    
+    Matrix q(4, 4);
+    
+    q.setValue(0, 0, 1);
+    q.setValue(0, 1, 2);
+    q.setValue(1, 2, 1);
+    q.setValue(2, 3, 1);
+    
+    cout << endl << endl;
+    cout << "Matrix q:\n" << endl;
+    q.printMatrix();
+    
+    if(q.isReducedRowEchelonForm())
+        cout << "\n\nMatrix q is in reduced row echelon form!" << endl;
+    
+    else
+        cout << "\n\nMatrix q is not in reduced row echelon form!" << endl;
+    
     return 0;
 }
 
