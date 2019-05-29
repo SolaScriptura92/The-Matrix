@@ -31,6 +31,7 @@ public:
     int getValue(int row, int column);
     void setValue(int row, int column, int value);
     bool isRowEchelonForm();
+    bool isReducedRowEchelonForm();
 };
 
 #endif /* Matrix_h */
