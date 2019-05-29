@@ -193,3 +193,50 @@ bool Matrix::isRowEchelonForm()
     
     return true;
 }
+
+bool Matrix::isReducedRowEchelonForm()
+{
+    if(this->isRowEchelonForm()) //must be in row echelon form for the possibility of it being in reduced row echelon form.
+    {
+        vector<int> leadingEntryIndices;
+        int numZeros = 0;
+        
+        for(int i = 0; i < this->getNumRows(); i++)
+        {
+            for(int j = 0; j < this->getNumColumns(); j++)
+            {
+                if(this->getValue(i, j) != 0)
+                {
+                    leadingEntryIndices.push_back(j); //stores the column number leading non zero appears in.
+                }
+            }
+        }
+        
+        //Now check columns to make sure they are the only non zero in their respective column.
+        
+        for(int r = 0; r < leadingEntryIndices.size(); r++)
+        {
+            for(int s = 0; s < this->getNumRows(); s++)
+            {
+                if(this->getValue(s, leadingEntryIndices[r]) == 0)
+                {
+                    numZeros++;
+                }
+            }
+            
+            if(numZeros != this->getNumRows() - 1)
+            {
+                return false;
+            }
+    
+            numZeros = 0;
+        }
+        
+        return true;
+    }
+    
+    else
+    {
+        return false;
+    }
+}
