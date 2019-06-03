@@ -240,6 +240,31 @@ int main()
     else
         cout << "\n\nMatrix q is not in reduced row echelon form!" << endl;
     
+/*
+    The code now creates a new 4 x 4 matrix named 'randomMatrix', prints it as new (which should be all zeros). Then it calls the
+    randomFill() method on it which should fill it with random numbers between 0 and 9. It then prints the newly filled matrix.
+ */
+    srand((unsigned)(time(0))); //seed to generate random values each time randomFill() is called.
+    Matrix randomMatrix(4, 4);
+    
+    cout << endl << endl;
+    cout << "New Matrix before randomFill(): " << endl;
+    randomMatrix.printMatrix();
+    cout << endl << endl;
+    
+    randomMatrix.randomFill();
+    
+    cout << "New Matrix after first randomFill(): " << endl;
+    randomMatrix.printMatrix();
+    cout << endl << endl;
+    
+    randomMatrix.randomFill();
+    
+    cout << "New Matrix after second randomFill(): " << endl;
+    randomMatrix.printMatrix();
+    cout << endl << endl;
+
+    
     return 0;
 }
 
