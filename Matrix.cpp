@@ -240,3 +240,15 @@ bool Matrix::isReducedRowEchelonForm()
         return false;
     }
 }
+
+void Matrix::randomFill()
+{
+    
+    for(int i = 0; i < this->getNumRows(); i++)
+    {
+        for(int j = 0; j < this->getNumColumns(); j++)
+        {
+            this->setValue(i, j, rand() % 10); //rand() % 10 produces random numbers between 0 and 9, inclusively.
+        }
+    }
+}
