@@ -11,6 +11,8 @@
 
 #include <vector>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 class Matrix
@@ -30,8 +32,10 @@ public:
     int getNumColumns();
     int getValue(int row, int column);
     void setValue(int row, int column, int value);
+    void randomFill();
     bool isRowEchelonForm();
     bool isReducedRowEchelonForm();
+    
 };
 
 #endif /* Matrix_h */
