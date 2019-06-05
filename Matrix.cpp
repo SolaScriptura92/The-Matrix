@@ -252,3 +252,116 @@ void Matrix::randomFill()
         }
     }
 }
+
+void Matrix::getUserMatrix()
+{
+    
+    
+    for(int i = 0; i < this->getNumRows(); i++) //get each row from the user.
+    {
+        cout << "Please enter row " << i + 1 << "-> ";
+        
+        string row;
+        getline(cin, row);
+        
+        
+    }
+}
+
+bool Matrix::isValidRow(string row, int columns)
+{
+    /*things to check for:
+        1. each string must contain only digits, negative signs, and spaces.
+        2. negative sign must be right before a valid digit (non zero)
+        3. the numbers in the string must be equal to the number of columns in the matrix.
+        4. make sure small input edge cases are covered.
+     */
+    
+    //The algorithm appends a space at the end to the string to make for easier edge case processing.
+    row += " ";
+    
+    if(row.find_first_not_of("0123456789- ") != string::npos && row != "") //if there exists a non-valid character in the string and it's not equal to the empty string.
+    {
+        return false;
+    }
+    
+    else //from here we know all characters are valid. Check 1. is satisfied. Now check condition 2 (valid placement of negative sign)
+    {
+        if(row[row.length() - 1] == '-') //if the last character is a negative sign, it is invalid because not followed by a number
+        {
+            return false;
+        }
+        
+        else //if it is not, then check for valid placement in the rest of the string.
+        {
+            //since correct negative sign placement can only exist when at least two or more characters are in the string, deal with
+            //the cases in which the string is empty or only one character is present (the latter case is handled by the 'if' statement above
+            
+            if(row.length() == 1) //empty string represents an empty matrix. Or if the length is one, at this point we know it is  simply a digit.
+                return true;
+        
+            else //check for valid negative string placement in strings with at least two characters.
+            {
+                for(int i = 0; i < row.length() - 2; i++) //check up to second to last character in the string
+                {
+                    if(row[i] == '-' && (row[i + 1] == '0' || row[i + 1] == '-' || row[i + 1] == ' ')) //if a negative sign is followed by a space, '0', or another negative sign
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        //at this point, checks 1, 2, and 4 have been successfully made. Now check for #3.
+        //now step through the string and gather numbers as substrings along the way. keep in mind that there may be leading space, trailing space, and space in between numbers.
+        //BE SURE TO ACCOUNT FOR THE INVALID ENTERING OF A NUMBER THAT IS NOT ZERO BUT BEGINS WITH A ZERO!
+        //Since we know negative signs are in the correct place, -3234-15 would count at the two numbers -3234 and -15 rather than being rejected as invalid.
+        //So we assume the user forget to enter a space in between.
+        
+        string num = "";
+        vector<int> numbers;
+        bool startedNum = false;
+        
+        for(int x = 0; x < row.length(); x++)
+        {
+            if((isdigit(row[x]) || row[x] == '-') && !startedNum) //if you're just starting a new number
+            {
+                num += row[x];
+                startedNum = true;
+            }
+            
+            else if(startedNum == true) //if you have already started a number
+            {
+                if(row[x] == ' ' || row[x] == '-') //then the number ends. Push back the current number stored.
+                {
+                    //since we already made sure '-' is not followed by a zero. make sure that if a number has more than two digits, and begins with a zero, you return false.
+                    if(num.length() >= 2 && num[0] == '0')
+                        return false;
+                    
+                    else
+                        numbers.push_back(stoi(num));
+                    
+                    num = "";
+                    
+                    if(row[x] == ' ')
+                        startedNum = false;
+                    
+                    else
+                    {
+                        startedNum = true;
+                        num += row[x];
+                    }
+                }
+                
+                else
+                    num += row[x];
+            }
+        }
+        
+        if(numbers.size() != columns)
+            return false;
+        
+        else
+            return true;
+    }
+}
