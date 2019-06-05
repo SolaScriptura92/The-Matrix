@@ -263,7 +263,99 @@ int main()
     cout << "New Matrix after second randomFill(): " << endl;
     randomMatrix.printMatrix();
     cout << endl << endl;
-
+    
+    
+/*
+    The code will now create a new 3 x 3 matrix named 'qr'. We create it simply for the purpose of using it to call our
+    newly added isValidRow(string row, int columns) function. Each individual test case will have a short description above it as well
+    as state what its proper output should be.
+ */
+    
+    Matrix qr(3, 3);
+    string test = "-123  456   749 ";
+    
+    //The first test below should return true because test has three numbers, which is in accordance with how many columns 'qr' has.
+    //The function ignores extra spaces.
+    
+    if(qr.isValidRow(test, qr.getNumColumns()))
+       cout << test << " is a valid row";
+       
+    else
+       cout << test << " is not a valid row";
+    
+    cout << endl << endl;
+       
+    test = "0123  456   749 ";
+       
+    //Now the program should state that it is not a valid row because 0123 is not a valid number.
+    
+    if(qr.isValidRow(test, qr.getNumColumns()))
+       cout << test << " is a valid row";
+          
+    else
+        cout << test << " is not a valid row";
+          
+    cout << endl << endl;
+    
+    //The test below should also state that it is not a valid row because there are 4 numbers
+    
+    test = "123 -479 89 1";
+    
+    if(qr.isValidRow(test, qr.getNumColumns()))
+        cout << test << " is a valid row";
+    
+    else
+        cout << test << " is not a valid row";
+    
+    cout << endl << endl;
+    
+    //The test below should state that it is a valid row because there are 3 numbers
+    
+    test = "1 0    1";
+    
+    if(qr.isValidRow(test, qr.getNumColumns()))
+        cout << test << " is a valid row";
+    
+    else
+        cout << test << " is not a valid row";
+    
+    cout << endl << endl;
+    
+    //The test below should state that it is not a valid row because there is a letter in the string
+    
+    test = "10 5a   11";
+    
+    if(qr.isValidRow(test, qr.getNumColumns()))
+        cout << test << " is a valid row";
+    
+    else
+        cout << test << " is not a valid row";
+    
+    cout << endl << endl;
+    
+    //The test below should state that it is a valid row because there are 3 valid numbers
+    
+    test = "10000 -100   -99991";
+    
+    if(qr.isValidRow(test, qr.getNumColumns()))
+        cout << test << " is a valid row";
+    
+    else
+        cout << test << " is not a valid row";
+    
+    cout << endl << endl;
+    
+    //The test below should state that it is a valid because an empty string represents and empty row/matrix.
+    
+    test = "";
+    
+    if(qr.isValidRow(test, qr.getNumColumns()))
+        cout << test << " is a valid row";
+    
+    else
+        cout << test << " is not a valid row";
+    
+    cout << endl << endl;
     
     return 0;
 }
