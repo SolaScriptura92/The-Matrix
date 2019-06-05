@@ -37,8 +37,7 @@ public:
     void randomFill();
     bool isRowEchelonForm();
     bool isReducedRowEchelonForm();
-    bool isValidRow(string row, int columns);
+    bool isValidRow(string row, int columns, vector<int> &numbers);
+    bool isEqual(Matrix &x);
     
 };
-
-#endif /* Matrix_h */
