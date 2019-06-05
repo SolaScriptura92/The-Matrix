@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+
 using namespace std;
 
 class Matrix
@@ -32,9 +33,11 @@ public:
     int getNumColumns();
     int getValue(int row, int column);
     void setValue(int row, int column, int value);
+    void getUserMatrix();
     void randomFill();
     bool isRowEchelonForm();
     bool isReducedRowEchelonForm();
+    bool isValidRow(string row, int columns);
     
 };
 
