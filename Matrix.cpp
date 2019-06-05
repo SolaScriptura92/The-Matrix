@@ -255,20 +255,34 @@ void Matrix::randomFill()
 
 void Matrix::getUserMatrix()
 {
-    
+    string row;
+    vector<int> nums;
     
     for(int i = 0; i < this->getNumRows(); i++) //get each row from the user.
     {
-        cout << "Please enter row " << i + 1 << "-> ";
-        
-        string row;
+        cout << "Please enter row " << i + 1 << " -> "; //program crashes here.
         getline(cin, row);
         
+        while(!this->isValidRow(row, this->getNumColumns(), nums))
+        {
+            cout << "\nWhoop! Looks like the row you entered is not valid." << endl;
+            cout << "Please ensure that the row has as many numbers as the matrix has columns." << endl;
+            cout << "Extra spaces in between numbers are ignored." << endl << endl;
+            cout << "Please enter row " << i + 1 << " -> ";
+            getline(cin, row);
+            nums.clear();
+        }
         
+        for(int j = 0; j < nums.size(); j++)
+        {
+            this->setValue(i, j, nums[j]);
+        }
+        
+        nums.clear();
     }
 }
 
-bool Matrix::isValidRow(string row, int columns)
+bool Matrix::isValidRow(string row, int columns, vector<int> &numbers)
 {
     /*things to check for:
         1. each string must contain only digits, negative signs, and spaces.
@@ -319,7 +333,6 @@ bool Matrix::isValidRow(string row, int columns)
         //So we assume the user forget to enter a space in between.
         
         string num = "";
-        vector<int> numbers;
         bool startedNum = false;
         
         for(int x = 0; x < row.length(); x++)
@@ -335,7 +348,7 @@ bool Matrix::isValidRow(string row, int columns)
                 if(row[x] == ' ' || row[x] == '-') //then the number ends. Push back the current number stored.
                 {
                     //since we already made sure '-' is not followed by a zero. make sure that if a number has more than two digits, and begins with a zero, you return false.
-                    if(num.length() >= 2 && num[0] == '0')
+                    if((num.length() >= 2 && num[0] == '0') || (num[num.length() - 1] == '-' && x == row.length() - 1))
                         return false;
                     
                     else
@@ -343,7 +356,7 @@ bool Matrix::isValidRow(string row, int columns)
                     
                     num = "";
                     
-                    if(row[x] == ' ')
+                    if(row[x] == ' ' || (row[x] == '-' && x == row.size() - 1))
                         startedNum = false;
                     
                     else
@@ -364,4 +377,18 @@ bool Matrix::isValidRow(string row, int columns)
         else
             return true;
     }
+}
+
+bool Matrix::isEqual(Matrix &x)
+{
+    for(int i = 0; i < this->getNumRows(); i++)
+    {
+        for(int j = 0; j < this->getNumColumns(); j++)
+        {
+            if(this->getValue(i, j) != x.getValue(i, j))
+                return false;
+        }
+    }
+    
+    return true;
 }
