@@ -33,11 +33,12 @@ void displayMainMenu()
     
     cout << "\nPlease choose from the following options: " << endl << endl;
     cout << "1. Matrix operations quiz" << endl;
-    cout << "2. Matrix calculator" << endl << endl;
+    cout << "2. Matrix calculator" << endl;
+    cout << "3. Quit program" << endl << endl;
     cout << "Your choice -> ";
     getline(cin, choice);
     
-    while(choice != "1" && choice != "2")
+    while(choice != "1" && choice != "2" && choice != "3")
     {
         cout << "\n\nInvalid option! Please choose from the options listed:" << endl << endl;
         cout << "1. Matrix operations quiz" << endl;
@@ -49,8 +50,11 @@ void displayMainMenu()
     if(choice == "1")
         displayMatrixOpsMenu();
     
-    else //must have chose option 2
+    else if(choice == "2")
         calculator();
+            
+    else
+        return;
 }
 
 void displayMatrixOpsMenu()
